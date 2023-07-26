@@ -36,6 +36,12 @@ body, html{
     width: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.swipe.hidden {
+    opacity: 0;
 }
 
 .swipe-text{
@@ -121,7 +127,8 @@ body, html{
     font-weight: 400;
     font-size: 2vh;
     height: 5.25vh;
-    border-bottom: 0.50px #F2F2F2 solid
+    border-bottom: 0.50px #F2F2F2 solid;
+    transition: height 0.3s ease;
 }
 
 .box-first{
@@ -137,8 +144,13 @@ body, html{
     left: 4.44vw;
 }
 
-.box-content{
-    display: none;
+.box-content {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.box-content.hidden {
+opacity: 0;
 }
 
 .box-content *{
