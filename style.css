@@ -13,6 +13,7 @@ body, html{
     width: 100vw;
     height: 100vh;
     position: relative;
+    overflow: hidden;
 }
 
 .page *{
@@ -70,7 +71,7 @@ body, html{
 }
 
 .right{
-    right: 4.5vw;
+    margin-right: 4.5vw;
     text-align: right;
 }
 
@@ -118,7 +119,6 @@ body, html{
 .dropdown{
     top: 22vh;
     width: 78vw;
-    background-color: #FFFFFF;
 }
 
 .box{
@@ -127,16 +127,17 @@ body, html{
     font-weight: 400;
     font-size: 2vh;
     height: 5.25vh;
-    border-bottom: 0.50px #F2F2F2 solid;
+    background-color: #FFFFFF;
+    border-bottom: 0.2777777778vw solid #F2F2F2;
     transition: height 0.3s ease;
 }
 
 .box-first{
-    border-top-right-radius: 20px;
+    border-radius: 0 2.2222222222vw 0 0;
 }
 
 .box-last{
-    border-bottom-right-radius: 20px;
+    border-radius: 0 0 2.2222222222vw 0;
 }
 
 .box *{
@@ -150,7 +151,7 @@ body, html{
 }
 
 .box-content.hidden {
-opacity: 0;
+    opacity: 0;
 }
 
 .box-content *{

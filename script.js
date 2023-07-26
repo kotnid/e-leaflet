@@ -4,10 +4,19 @@ var lastScrollY = 0;
 var scrollSpeed = 0;
 var arrow = document.getElementsByClassName("arrow")[0];  
 
+function calc(inp){
+    return (inp*104.5/0.8)-100;
+}
+
+function calc2(inp){
+    return (inp*104.5/0.6)-100;
+}
+
 window.addEventListener('scroll', function() {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var viewportHeight = window.innerHeight;
     var pages = Math.floor(scrollTop/viewportHeight+0.95);
+    var pages2 = scrollTop/viewportHeight+0.95;
 
     var swipe = document.querySelector('.swipe');
     var swipeText = document.querySelector('.swipe-text');
@@ -31,6 +40,43 @@ window.addEventListener('scroll', function() {
     if(pages == 4 && !(swipe.classList.contains('hidden'))){
         swipe.classList.add('hidden');
     }
+
+    var titles = document.getElementsByClassName("title");    
+    var pg = document.getElementsByClassName("page"); 
+    console.log(pages2,pages);
+
+    if(pages%2==0){
+        if(pages2-pages <= 0.8)titles[pages].style.marginLeft = calc(pages2-pages)+"vw";
+        else titles[pages].style.marginLeft = "4.5vw";
+        
+        var children = pg[pages].querySelectorAll("div:not(.title)");
+        for (var i = 0; i < children.length; i++) {
+            if(children[i].classList.contains("box") || children[i].classList.contains("dropdown")){
+                if(pages2-pages <= 0.95)children[i].style.marginLeft = calc2(pages2-pages-0.35)-4.5+"vw";
+                else children[i].style.marginLeft = "0vw";
+            }else{
+                if(pages2-pages <= 0.95)children[i].style.marginLeft = calc2(pages2-pages-0.35)+"vw";
+                else children[i].style.marginLeft = "4.5vw";
+            }
+        }
+
+        
+    }else{
+        if(pages2-pages <= 0.8)titles[pages].style.marginRight = calc(pages2-pages)+"vw";
+        else titles[pages].style.marginRight = "4.5vw";
+
+        var children = pg[pages].querySelectorAll("div:not(.title)");
+        for (var i = 0; i < children.length; i++) {
+            if(children[i].classList.contains("box") || children[i].classList.contains("dropdown")){
+                if(pages2-pages <= 0.95)children[i].style.marginRight = calc2(pages2-pages-0.35)-4.5+"vw";
+                else children[i].style.marginRight = "0vw";
+            }else{
+                if(pages2-pages <= 0.95)children[i].style.marginRight = calc2(pages2-pages-0.35)+"vw";
+                else children[i].style.marginRight = "4.5vw";
+            }
+        }
+    }
+
   });
 
 for(var i=0 ; i<dropdown.childNodes.length; i++){
@@ -67,7 +113,7 @@ window.addEventListener('wheel', function(event) {
     var timeDiff = now - lastScrollTime;
     var distance = event.pageY - lastScrollY;
     var speed = Math.abs(distance / timeDiff);
-    console.log(speed);
+    // console.log(speed);
     // arrow.style.transform = "translateY(" + speed/5 +"vh)";
     scrollSpeed = speed;
     lastScrollTime = now;
