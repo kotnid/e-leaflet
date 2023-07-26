@@ -51,7 +51,7 @@ window.addEventListener('scroll', function() {
         
         var children = pg[pages].querySelectorAll("div:not(.title)");
         for (var i = 0; i < children.length; i++) {
-            if(children[i].classList.contains("box") || children[i].classList.contains("dropdown")){
+            if(children[i].classList.contains("box") || children[i].classList.contains("dropdown") || children[i].classList.contains("info") || children[i].classList.contains("cite")  ){
                 if(pages2-pages <= 0.95)children[i].style.marginLeft = calc2(pages2-pages-0.35)-4.5+"vw";
                 else children[i].style.marginLeft = "0vw";
             }else{
