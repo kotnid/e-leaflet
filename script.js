@@ -26,6 +26,7 @@ function calc2(inp){
 //     window.scrollTo(window.pageXOffset, window.pageYOffset + speed);
 //   },{passive:false});
 var prev = 1;
+var prevent = false;
 
 window.addEventListener('scroll', function(event) {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -52,18 +53,20 @@ window.addEventListener('scroll', function(event) {
         console.log(prev, pages);
         swipe.classList.add('hidden');
         document.body.classList.add("remove-scrolling"); 
+        prevent = true;
+
         scrollTimeout = setTimeout(function() {
             document.body.classList.remove("remove-scrolling");
             swipe.classList.remove('hidden');
+            prevent = false;
           }, 2000);
     }else{
-        if(pages != 4 && swipe.classList.contains('hidden')){
+        if(pages != 4 && swipe.classList.contains('hidden') && !prevent){
             swipe.classList.remove('hidden');
         }    
     }
 
     prev = pages;
-    
     
     if(pages == 4 && !(swipe.classList.contains('hidden'))){
         swipe.classList.add('hidden');
