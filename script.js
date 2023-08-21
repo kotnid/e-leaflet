@@ -12,11 +12,26 @@ function calc2(inp){
     return (inp*104.5/0.6)-100;
 }
 
-window.addEventListener('scroll', function() {
+
+// window.addEventListener("wheel", (event) => {
+//     event.preventDefault();
+    
+//     // Getting the scrolling speed
+//     let deltaY = event.deltaY;
+    
+//     // Decreasing the scrolling speed by 50 times
+//     let speed = deltaY * 0.4;
+    
+//     // Scrolling the window
+//     window.scrollTo(window.pageXOffset, window.pageYOffset + speed);
+//   },{passive:false});
+var prev = 1;
+
+window.addEventListener('scroll', function(event) {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var viewportHeight = window.innerHeight;
-    var pages = Math.floor(scrollTop/viewportHeight+0.95);
-    var pages2 = scrollTop/viewportHeight+0.95;
+    var pages = Math.floor(scrollTop/viewportHeight+1);
+    var pages2 = scrollTop/viewportHeight+1;
 
     var swipe = document.querySelector('.swipe');
     var swipeText = document.querySelector('.swipe-text');
@@ -32,11 +47,24 @@ window.addEventListener('scroll', function() {
         }
     }
 
-    
-    if(pages != 4 && swipe.classList.contains('hidden')){
-        swipe.classList.remove('hidden');
+    if(prev < pages){
+        window.scrollTo(0,(pages-0.99)*viewportHeight);
+        console.log(prev, pages);
+        swipe.classList.add('hidden');
+        document.body.classList.add("remove-scrolling"); 
+        scrollTimeout = setTimeout(function() {
+            document.body.classList.remove("remove-scrolling");
+            swipe.classList.remove('hidden');
+          }, 2000);
+    }else{
+        if(pages != 4 && swipe.classList.contains('hidden')){
+            swipe.classList.remove('hidden');
+        }    
     }
 
+    prev = pages;
+    
+    
     if(pages == 4 && !(swipe.classList.contains('hidden'))){
         swipe.classList.add('hidden');
     }

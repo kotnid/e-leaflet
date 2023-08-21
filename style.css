@@ -175,3 +175,8 @@ body, html{
     width: 3.3vw;
     height: auto;
 }
+
+.remove-scrolling { 
+    height: 100%; 
+    overflow: hidden; 
+} 
