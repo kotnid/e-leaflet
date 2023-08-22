@@ -13,6 +13,7 @@ function calc2(inp){
 }
 
 
+
 // window.addEventListener("wheel", (event) => {
 //     event.preventDefault();
     
@@ -30,7 +31,9 @@ var prevent = false;
 
 window.addEventListener('scroll', function(event) {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    var viewportHeight = window.innerHeight;
+    var viewportHeight = document.documentElement.clientHeight;
+    // var viewportHeight = window.innerHeight;
+    // alert(viewportHeight, document.documentElement.clientHeight);
     var pages = Math.floor(scrollTop/viewportHeight+1);
     var pages2 = scrollTop/viewportHeight+1;
 
