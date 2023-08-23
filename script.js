@@ -52,7 +52,8 @@ window.addEventListener('scroll', function(event) {
     }
 
     if(prev < pages){
-        window.scrollTo(0,(pages-0.99)*viewportHeight);
+        console.log("GO TO : ",(pages-1)*viewportHeight+1);
+        window.scrollTo(0,(pages-1)*viewportHeight+1);
         console.log(prev, pages);
         swipe.classList.add('hidden');
         document.body.classList.add("remove-scrolling"); 
@@ -62,22 +63,32 @@ window.addEventListener('scroll', function(event) {
             document.body.classList.remove("remove-scrolling");
             swipe.classList.remove('hidden');
             prevent = false;
-          }, 2000);
-    }else{
-        if(pages != 4 && swipe.classList.contains('hidden') && !prevent){
-            swipe.classList.remove('hidden');
-        }    
+          }, 1000);
     }
+
+    if(pages != 5 && swipe.classList.contains('hidden') && !prevent){
+        swipeText.textContent = "Swipe to continue";
+        swipe.classList.remove('hidden');
+    }   
 
     prev = pages;
     
-    if(pages == 4 && !(swipe.classList.contains('hidden'))){
-        swipe.classList.add('hidden');
-    }
+    // if(pages == 5 && !(swipe.classList.contains('hidden'))){
+    //     swipe.classList.add('hidden');
+    // }
 
     var titles = document.getElementsByClassName("title");    
     var pg = document.getElementsByClassName("page"); 
-    console.log(pages2,pages);
+    console.log(pages2,pages,scrollTop,viewportHeight);
+
+    if(pages2 >= 7){
+        window.location.href = "https://d3a7b2e4001d-14885642136133191677.ngrok-free.app/";
+    }
+
+    if(pages2 >= 6){
+        swipeText.textContent = "Swipe for going to destress";
+        return;
+    }
 
     if(pages%2==0){
         if(pages2-pages <= 0.8)titles[pages].style.marginLeft = calc(pages2-pages)+"vw";
@@ -111,7 +122,7 @@ window.addEventListener('scroll', function(event) {
         }
     }
 
-  });
+});
 
 for(var i=0 ; i<dropdown.childNodes.length; i++){
     var box = dropdown.childNodes[i];
